@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Route, Switch, withRouter } from 'react-router-dom';
+import { render } from "react-dom";
 import axios from 'axios'
 import config from './config'
 import './index.css'
@@ -7,9 +8,9 @@ import MyNav from './components/MyNav.jsx'
 import SignUp from './components/SignUp'
 import SignIn from './components/SignIn'
 import RestaurantsList from './components/RestaurantsList';
+import AddReview from "./components/AddReview";
 
-class App extends Component{
-
+class App extends Component {
   state = {
     restaurants: [],
     loggedInUser: null,
@@ -75,6 +76,28 @@ class App extends Component{
         console.log('Something went wrong', err)
     })
  }
+
+ handleSubmit = (data) => {
+    
+  axios.post(`${config.API_URL}/api/add-review`, 
+      data
+    )
+
+    .then((response) => {
+      this.setState(
+        {
+          reviews: [response.data, ...this.state.reviews],
+        },
+        () => {
+          this.props.history.push("/");
+        }
+      );
+    })
+    .catch((err) => {
+      console.log("adding review failed", err);
+    });
+};
+
   render(){
     const { loggedInUser, error} = this.state
   return (
@@ -89,10 +112,15 @@ class App extends Component{
 	             return  <SignUp error={error} onSignUp={this.handleSignUp} {...routeProps}  />
             }}/>
             <Route path="/businesses" component={RestaurantsList}/>
+            <Route
+            path="/add-review"
+            render={() => {
+              return <AddReview onAdd={this.handleSubmit} />;
+            }}
+          />
       </Switch>
     </div>
   );
+ }
 }
-}
-
-export default  withRouter(App)
+  export default  withRouter(App)
