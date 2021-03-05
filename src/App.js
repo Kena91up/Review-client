@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 import { Route, Switch, withRouter } from 'react-router-dom';
 import axios from 'axios'
 import config from './config'
+import './index.css'
 import MyNav from './components/MyNav.jsx'
 import SignUp from './components/SignUp'
 import SignIn from './components/SignIn'
+import RestaurantsList from './components/RestaurantsList';
 
 class App extends Component{
 
@@ -12,6 +14,8 @@ class App extends Component{
     restaurants: [],
     loggedInUser: null,
     error: null,
+    reviews: []
+
   }
 
 
@@ -59,8 +63,7 @@ class App extends Component{
  }
 
  handleLogout = (event) => {
-
-  axios.post(`${config.API_URL}/api/logout`, {},{withCredentials: true})
+   axios.post(`${config.API_URL}/api/logout`, {},{withCredentials: true})
     .then((response) => {
         this.setState({
           loggedInUser: null
@@ -74,18 +77,18 @@ class App extends Component{
  }
   render(){
     const { loggedInUser, error} = this.state
-    console.log(loggedInUser)
   return (
    
     <div className="App">
     <MyNav onLogout={this.handleLogout} user={loggedInUser} />
       <Switch>
-      <Route  path="/signin"  render={(routeProps) => {
+      <Route path="/signin" render={(routeProps) => {
               return  <SignIn onSignIn={this.handleSignIn} {...routeProps}  />
             }}/>
-            <Route  path="/signup"  render={(routeProps) => {
+            <Route path="/signup" render={(routeProps) => {
 	             return  <SignUp error={error} onSignUp={this.handleSignUp} {...routeProps}  />
             }}/>
+            <Route path="/businesses" component={RestaurantsList}/>
       </Switch>
     </div>
   );

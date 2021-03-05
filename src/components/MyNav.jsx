@@ -15,18 +15,18 @@ function MyNav(props) {
         <>
           <button>
             <Link style={{ marginLeft: "10px" }} to="/signin">
-              SignIn
+              LogIn
             </Link>
           </button>
           <button>
             <Link style={{ marginLeft: "10px" }} to="/signup">
-              SignUp
+              Create an account
             </Link>
           </button>
           </>
           )
         }
-          <Link to="/">List of Restaurents</Link>
+          <Link to="businesses">List of Restaurents</Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

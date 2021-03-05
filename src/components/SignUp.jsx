@@ -1,25 +1,26 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
+
 function SignUp(props){
   
     return (
-      <form onSubmit={props.onSignUp}>
-            <div className="form-group">
+      <div className="container">
+      <form onSubmit={props.onSignUp} className="form-signup">
+          <h1 className="h3 mb-3 font-weight-normal">Please Sign Up</h1>
+          <div className="row">
+            <div className="col">
                 <label htmlFor="InputUsername">Username</label>
                 <input name="username" type="text" id="InputUsername"  />
-            </div>
-            <div className="form-group">
                 <label htmlFor="InputEmail">Email</label>
                 <input name="email" type="email"  id="InputEmail"  />
-            </div>
-            <div className="form-group">
                 <label htmlFor="InputPassword">Password</label>
                 <input name="password" type="password"  id="InputPassword" />
-            </div>
+                </div>
+          </div>
             {
               props.error ? (
-                <p style={{color :'red'}}>{props.error.errorMessage}</p>
+                <p style={{color :'green'}}>{props.error.errorMessage}</p>
               ) : null
             }
             <button type="submit" className="btn btn-primary">Create an account</button>
@@ -28,6 +29,7 @@ function SignUp(props){
               LogIn
             </Link></p>
         </form>
+        </div>
     )
     }
 export default SignUp
