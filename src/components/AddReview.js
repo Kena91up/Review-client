@@ -46,8 +46,8 @@ class AddReview extends Component {
         <label> Give a rating </label>
         <Rating
           name="rating"
-          emptySymbol={<Star color="yellow" />}
-          fullSymbol={<StarFill color="golden" />}
+          emptySymbol={<Star color="darkblue" />}
+          fullSymbol={<StarFill color="blue" />}
           initialRating={this.state.ratingCategory}
           onClick={(value) => {
             this.setState({
