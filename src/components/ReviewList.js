@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import config from '../config';
+import {StarFill} from "react-bootstrap-icons";
 
 class ReviewList extends Component {
     state= {
@@ -10,6 +11,7 @@ class ReviewList extends Component {
     componentDidMount() {
         let restaurantId = this.props.restaurantId
     axios.get(`${config.API_URL}/api/reviews`, {
+        withCredentials: true,
         params: {
             restaurantId: restaurantId
         }
@@ -32,11 +34,11 @@ class ReviewList extends Component {
             <h4> Reviews </h4>
         {
             reviews.map((singleReview) => {
-                console.log(singleReview)
                 return (
                     <div>
                     <div> {singleReview.title} </div>
                     <div> {singleReview.description} </div>
+                    <div> {singleReview.rating} <StarFill height='10px' color="blue"/> </div>
                     </div>
                 );
             })

@@ -53,7 +53,7 @@ class App extends Component {
     let profileimage = event.target.profileimage.files[0]
     
     let uploadForm = new FormData()
-    uploadForm.append('imageUrl', image)
+    uploadForm.append('imageUrl', profileimage)
 
     // send image to cloudinary
     axios.post(`${config.API_URL}/api/user/upload`, uploadForm)

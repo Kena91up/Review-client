@@ -30,7 +30,7 @@ class AddReview extends Component {
     };
 
     axios
-      .post(`${config.API_URL}/api/add-review`, data)
+      .post(`${config.API_URL}/api/add-review`, data, {withCredentials: true})
 
       .then((response) => {
         this.setState({
@@ -39,7 +39,7 @@ class AddReview extends Component {
         });
         setTimeout(() => {
           this.props.history.push(`/businesses/${restaurantId}`);
-        }, 3000);
+        }, 2500);
       })
       .catch((err) => {
         console.log("adding review failed", err);

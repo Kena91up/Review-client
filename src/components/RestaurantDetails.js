@@ -5,6 +5,7 @@ import config from '../config';
 import {Images, StarFill} from "react-bootstrap-icons";
 import AddReview from './AddReview';
 import ReviewList from './ReviewList';
+import Map from './Map';
 
 class RestaurantDetails extends Component {
 
@@ -14,7 +15,7 @@ class RestaurantDetails extends Component {
 
     componentDidMount() {
         let restaurantId = this.props.match.params.restaurantId
-        axios.get(`${config.API_URL}/api/businesses/${restaurantId}`)
+        axios.get(`${config.API_URL}/api/businesses/${restaurantId}`, {withCredentials: true})
         .then((response) => {
             this.setState({
                 restaurantDetails: response.data})
@@ -27,7 +28,7 @@ class RestaurantDetails extends Component {
         const {restaurantDetails} = this.state
         let restaurantId = this.props.match.params.restaurantId
         if (!restaurantDetails){
-            return "Loading"
+            return "Loading..."
         }
         return (
             <div>
@@ -49,6 +50,7 @@ class RestaurantDetails extends Component {
             <div> Write a review </div>
             </Link>
             <ReviewList restaurantId={restaurantId}/>
+            <Map location={restaurantDetails}/>
             </div>
         )
     }
