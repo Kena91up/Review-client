@@ -17,7 +17,6 @@ class RestaurantsList extends Component {
   };
 
   componentDidMount() {
-    //let id = this.props.match.params.businessid;
     axios
       .get(`${config.API_URL}/api/businesses`)
       .then((response) => {
@@ -45,14 +44,16 @@ class RestaurantsList extends Component {
 
   // search by rating
   handleSearchRate = (event) => {
-    let searchRate = event.target.value;
+    let searchRate = event.target.value.SubSting();
     let filteredRateList = this.state.businesses.filter((rate) => {
-      return rate.rating.includes(searchRate);
+      return rate.businesses.rating.SubSting().includes(searchRate);
     });
     this.setState({
       filteredBusinesses: filteredRateList
     });
   };
+
+ 
 render() {
     const { filteredBusinesses } = this.state;
     return (

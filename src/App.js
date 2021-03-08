@@ -10,6 +10,7 @@ import SignIn from "./components/SignIn";
 import RestaurantsList from "./components/RestaurantsList";
 import AddReview from "./components/AddReview";
 import Profile from "./components/Profile";
+import AddUserDetails from './components/AddUserDetails'
 import RestaurantDetails from "./components/RestaurantDetails";
 
 class App extends Component {
@@ -19,7 +20,8 @@ class App extends Component {
     error: null,
     reviews: [],
     filteredProfile:[],
-    user:[]
+    user:[],
+    showForm: false,
   };
 
   // All the initial data that display to the user is fetched here
@@ -49,38 +51,56 @@ class App extends Component {
   handleSubmitProfile = (event) => {
     event.preventDefault()
     let country = event.target.country.value
-    let favirote = event.target.favirote.value
+    let favorite = event.target.favorite.value
     let profileimage = event.target.profileimage.files[0]
+    console.log(profileimage)
+    
     
     let uploadForm = new FormData()
-    uploadForm.append('imageUrl', image)
+    uploadForm.append('imageUrl', profileimage)
 
-    // send image to cloudinary
-    axios.post(`${config.API_URL}/api/user/upload`, uploadForm)
-      .then((response) => {
-            //1. Make an API call to the server side Route to create a new todo
-          axios.post(`${config.API_URL}/api/edit`, {
-            country: country,
-            favirote: favirote,
-            profileimage: response.data.profileimage
-          })
-            .then((response) => {
-                // 2. Once the server has successfully created a new todo, update your state that is visible to the user
-                this.setState({
-                  user: [response.data, ...this.state.user]
-                }, () => {
-                  //3. Once the state is update, redirect the user to the home page
-                  this.props.history.push('/')
-                })
-
+    axios.post(`${config.API_URL}/api/upload`, uploadForm)
+       .then((response) =>{
+          axios.patch(`${config.API_URL}/api/user/update`,{country, favorite, profileimage:response.data.image}, {withCredentials:true})
+            .then((response) =>{
+              this.setState({
+                loggedInUser: response.data
+              }, () =>{
+                this.props.history.push('/profile')
+              })
             })
-            .catch((err) => {
-              console.log('Create failed', err)
-            })
-      })
-      .catch(() => {
+          
+       })
+       .catch((err) => {
+        console.log('Update failed', err)
+       })    
+    // // send image to cloudinary
+    // axios.post(`${config.API_URL}/api/user/upload`, uploadForm)
+    //   .then((response) => {
+    //         //1. Make an API call to the server side Route to update new details
+    //       axios.post(`${config.API_URL}/api/:id`, {
+    //         country: country,
+    //         favirote: favirote,
+    //         profileimage: response.data.profileimage
+    //       })
+    //         .then((response) => {
+    //             // 2. Once the server has successfully created a new todo, update your state that is visible to the user
+    //             this.setState({
+    //               // showForm: false,
+    //               user: [response.data, ...this.state.user]
+    //             }, () => {
+    //               //3. Once the state is update, redirect the user to the home page
+    //               this.props.history.push('/')
+    //             })
 
-      })
+    //         })
+    //         .catch((err) => {
+    //           console.log('Create failed', err)
+    //         })
+    //   })
+    //   .catch(() => {
+
+    //   })
 
     
  }
@@ -97,7 +117,7 @@ class App extends Component {
           })
 
           this.setState({
-            todos: filteredProfile
+            user : filteredProfile
           }, () => {
             this.props.history.push('/')
           })
@@ -107,7 +127,7 @@ class App extends Component {
       })
 
  }
-
+ 
 
   handleSignUp = (event) => {
     event.preventDefault();
@@ -180,28 +200,8 @@ class App extends Component {
       });
   };
 
-  handleSubmit = (data) => {
-    axios
-      .post(`${config.API_URL}/api/add-review`, data)
-
-      .then((response) => {
-        this.setState(
-          {
-            reviews: [response.data, ...this.state.reviews],
-          },
-          () => {
-            this.props.history.push("/");
-          }
-        );
-      })
-      .catch((err) => {
-        console.log("adding review failed", err);
-      });
-  };
-
- 
   render() {
-    const { loggedInUser, error } = this.state;
+    const { loggedInUser, error} = this.state;
     return (
       <div className="App">
         <MyNav onLogout={this.handleLogout} user={loggedInUser} />
@@ -220,6 +220,9 @@ class App extends Component {
               );
             }}
           />
+          <Route path="/profile" render ={(routeProps) =>{
+            return <Profile loggedInUser={loggedInUser} {...routeProps}/> 
+          }}/>
           <Route exact path="/businesses" component={RestaurantsList} />
           <Route
             exact path="/businesses/:restaurantId/add-review"
@@ -227,9 +230,12 @@ class App extends Component {
               return <AddReview onAdd={this.handleSubmit} />;
             }}
           />
-             <Route path="/profile" render={() => {
-                return <Profile onAdd={this.handleSubmitProfile} onDelete={this.handleDelete} />
-            }} />
+          <Route
+          path="/user/:id"
+          render={(routeProps) => {
+            return <AddUserDetails onAdd={this.handleSubmitProfile} onDelete={this.handleDelete} {...routeProps} />;
+          }}
+        />
           <Route
             exact path="/businesses/:restaurantId"
             component={RestaurantDetails}
