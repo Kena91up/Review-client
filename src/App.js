@@ -10,6 +10,7 @@ import SignIn from "./components/SignIn";
 import RestaurantsList from "./components/RestaurantsList";
 import AddReview from "./components/AddReview";
 import Profile from "./components/Profile";
+import RestaurantDetails from "./components/RestaurantDetails";
 
 class App extends Component {
   state = {
@@ -219,9 +220,9 @@ class App extends Component {
               );
             }}
           />
-         <Route path='/businesses' component={RestaurantsList}/>
+          <Route exact path="/businesses" component={RestaurantsList} />
           <Route
-            path="/add-review"
+            exact path="/businesses/:restaurantId/add-review"
             render={() => {
               return <AddReview onAdd={this.handleSubmit} />;
             }}
@@ -229,6 +230,10 @@ class App extends Component {
              <Route path="/profile" render={() => {
                 return <Profile onAdd={this.handleSubmitProfile} onDelete={this.handleDelete} />
             }} />
+          <Route
+            exact path="/businesses/:restaurantId"
+            component={RestaurantDetails}
+          />
         </Switch>
       </div>
     );
