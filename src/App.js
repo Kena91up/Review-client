@@ -180,26 +180,6 @@ class App extends Component {
       });
   };
 
-  handleSubmit = (data) => {
-    axios
-      .post(`${config.API_URL}/api/add-review`, data)
-
-      .then((response) => {
-        this.setState(
-          {
-            reviews: [response.data, ...this.state.reviews],
-          },
-          () => {
-            this.props.history.push("/");
-          }
-        );
-      })
-      .catch((err) => {
-        console.log("adding review failed", err);
-      });
-  };
-
- 
   render() {
     const { loggedInUser, error } = this.state;
     return (
