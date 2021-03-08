@@ -31,12 +31,13 @@ import {StarFill} from "react-bootstrap-icons";
                 businesses.map((singleBusiness) => {
                     return (
                       <div key = {singleBusiness.id}>
-                      <Link to={`/businesses/${singleBusiness.id}`}>
                       <h3> {singleBusiness.name} </h3>
-                      </Link>
-                      <h4> {singleBusiness.location.city}, {singleBusiness.location.address1}</h4>
+                      <h4> {singleBusiness.location.city} | {singleBusiness.location.address1}</h4>
                       <h5> Rating: {singleBusiness.rating} <StarFill height="10px" color="blue"/> </h5>
                     <img style = {{width: '300px'}} src = {singleBusiness.image_url} />
+                    <Link to={`/businesses/${singleBusiness.id}`}>
+                    <h5> More details</h5>
+                    </Link>
                 </div>
                     );
                   })

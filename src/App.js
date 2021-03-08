@@ -88,24 +88,7 @@ class App extends Component {
       });
   };
 
-  handleSubmit = (data) => {
-    axios
-      .post(`${config.API_URL}/api/add-review`, data)
-
-      .then((response) => {
-        this.setState(
-          {
-            reviews: [response.data, ...this.state.reviews],
-          },
-          () => {
-            this.props.history.push("/");
-          }
-        );
-      })
-      .catch((err) => {
-        console.log("adding review failed", err);
-      });
-  };
+  
 
   render() {
     const { loggedInUser, error } = this.state;
@@ -131,15 +114,15 @@ class App extends Component {
               );
             }}
           />
-          <Route path="/businesses" exact={true} component={RestaurantsList} />
+          <Route exact path="/businesses" component={RestaurantsList} />
           <Route
-            path="/add-review"
+            exact path="/businesses/:restaurantId/add-review"
             render={() => {
               return <AddReview onAdd={this.handleSubmit} />;
             }}
           />
           <Route
-            path="/businesses/:restaurantId"
+            exact path="/businesses/:restaurantId"
             component={RestaurantDetails}
           />
         </Switch>
