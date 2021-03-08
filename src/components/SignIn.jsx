@@ -13,6 +13,11 @@ function SignIn(props){
                 <input name="email" type="email" id="InputEmail"  />
                 <label htmlFor="InputPassword">Password</label>
                 <input name="password" type="password" id="InputPassword"/>
+                {
+              props.error ? (
+                <p style={{color :'green'}}>{props.error.error}</p>
+              ) : null
+            }
                 <button type="submit" className="btn btn-primary">Log In</button>
                 </div>
           </div>

@@ -10,8 +10,9 @@ function MyNav(props) {
         <Nav className="mr-auto">
         {
           props.user ? (
-            <button onClick= {props.onLogout} >LogOut</button> //onclick is event onLogout is eventlistner
-          ) : (
+            <button onClick= {props.onLogout} >LogOut</button>
+              //onclick is event onLogout is eventlistner
+          ) :(
         <>
           <button>
             <Link style={{ marginLeft: "10px" }} to="/signin">
@@ -26,7 +27,6 @@ function MyNav(props) {
           </>
           )
         }
-          <Link to="businesses">List of Restaurents</Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
