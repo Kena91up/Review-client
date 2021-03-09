@@ -56,6 +56,7 @@ class RestaurantsList extends Component {
  
 render() {
     const { filteredBusinesses } = this.state;
+   
     return (
       <div>
       <Link to='/profile'><button>Profile</button></Link>
@@ -68,7 +69,7 @@ render() {
               <div key = {singleBusiness.id}>
                       <h3>Name: {singleBusiness.name} </h3>
                       <h4>Location: {singleBusiness.location.city}, {singleBusiness.location.address1}</h4>
-                      <h4>food:{singleBusiness.categories[0].title}</h4>
+                      <h4> Cuisine: {singleBusiness.categories[0].title}</h4>
                       <h4>{singleBusiness.terms}</h4>
                       <h5> Rating: {singleBusiness.rating} <StarFill height='10px' color="blue"/> </h5>
                     <img style = {{width: '300px'}} src = {singleBusiness.image_url} />
