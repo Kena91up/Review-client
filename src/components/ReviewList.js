@@ -25,7 +25,8 @@ class ReviewList extends Component {
     })
 }
     render() {
-        const {reviews} = this.state
+        const {reviews} = this.state;
+        const { loggedInUser , username} = this.props;
         
         return (
             <div>
@@ -37,6 +38,7 @@ class ReviewList extends Component {
                     <div>
                     <div> {singleReview.title} </div>
                     <div> {singleReview.description} </div>
+                    <img src={singleReview.image} alt={singleReview.title}/>
                     </div>
                 );
             })

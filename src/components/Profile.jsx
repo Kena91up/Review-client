@@ -11,7 +11,7 @@ class Profile extends Component {
   componentDidMount() {
     let id = this.props.id;
     axios
-      .get(`${config.API_URL}/api/user/${id}`)
+      .get(`${config.API_URL}/api/user`)
       .then((response) => {
         this.setState({
             users: response.data,
@@ -31,7 +31,7 @@ class Profile extends Component {
     // }
     return (
       <div>
-        <h4> Welcome to your Profile {`${loggedInUser.username}`}!</h4>
+        <h4> Welcome to your Profile {loggedInUser.username} !</h4>
           <div>Name:{loggedInUser.username}</div>
           <div>Email:{loggedInUser.email} </div>
           <img src={loggedInUser.profileimage} alt=''/>

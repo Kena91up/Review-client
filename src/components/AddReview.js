@@ -17,29 +17,34 @@ class AddReview extends Component {
     let title = event.target.title.value;
     let description = event.target.description.value;
     let date = event.target.date.value;
-    let image = event.target.image.value;
+    let image = event.target.image.files[0];
     let restaurantId = this.props.match.params.restaurantId;
 
-    const data = {
-      title,
-      description,
-      date,
-      image,
-      rating: this.state.ratingCategory,
-      restaurantId,
-    };
+    let uploadFormImage = new FormData();
+    uploadFormImage.append("imageUrl", image);
 
     axios
-      .post(`${config.API_URL}/api/add-review`, data)
-
+      .post(`${config.API_URL}/api/upload`, uploadFormImage)
       .then((response) => {
-        this.setState({
-          reviews: response.data,
-          complete: true,
-        });
-        setTimeout(() => {
-          this.props.history.push(`/businesses/${restaurantId}`);
-        }, 3000);
+        axios
+          .post(`${config.API_URL}/api/add-review`, {
+            image: response.data.image,
+            title,
+            description,
+            date,
+            rating: this.state.ratingCategory,
+            restaurantId,
+          })
+
+          .then((response) => {
+            this.setState({
+              reviews: response.data,
+              complete: true,
+            });
+            setTimeout(() => {
+              this.props.history.push(`/businesses/${restaurantId}`);
+            }, 3000);
+          });
       })
       .catch((err) => {
         console.log("adding review failed", err);
