@@ -27,7 +27,7 @@ class App extends Component {
   // All the initial data that display to the user is fetched here
   componentDidMount() {
     axios
-      .get(`${config.API_URL}/api/user`)
+      .get(`${config.API_URL}/api/user` ,{withCredentials:true})
       .then((response) => {
         this.setState({
           user: response.data,
@@ -80,33 +80,7 @@ class App extends Component {
       .catch((err) => {
         console.log("Update failed", err);
       });
-    // // send image to cloudinary
-    // axios.post(`${config.API_URL}/api/user/upload`, uploadForm)
-    //   .then((response) => {
-    //         //1. Make an API call to the server side Route to update new details
-    //       axios.post(`${config.API_URL}/api/:id`, {
-    //         country: country,
-    //         favirote: favirote,
-    //         profileimage: response.data.profileimage
-    //       })
-    //         .then((response) => {
-    //             // 2. Once the server has successfully created a new todo, update your state that is visible to the user
-    //             this.setState({
-    //               // showForm: false,
-    //               user: [response.data, ...this.state.user]
-    //             }, () => {
-    //               //3. Once the state is update, redirect the user to the home page
-    //               this.props.history.push('/')
-    //             })
-
-    //         })
-    //         .catch((err) => {
-    //           console.log('Create failed', err)
-    //         })
-    //   })
-    //   .catch(() => {
-
-    //   })
+    
   };
 
   handleDelete = (id) => {

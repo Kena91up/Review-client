@@ -37,10 +37,12 @@ class ReviewList extends Component {
             reviews.map((singleReview) => {
                 return (
                     <div>
+                    <div> User: {singleReview.userId.username}  </div>
+                    <div> {singleReview.userId.profileimage}  </div>
                     <div> {singleReview.title} </div>
                     <div> {singleReview.description} </div>
-                    <img src={singleReview.image} alt={singleReview.title}/>
                     <div> {singleReview.rating} <StarFill height='10px' color="blue"/> </div>
+                    <img src={singleReview.image} alt={singleReview.title}/>
                     </div>
                 );
             })

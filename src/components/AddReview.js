@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Rating from "react-rating";
-import { Star, StarFill, StarHalf } from "react-bootstrap-icons";
+import { Star, StarFill, StarHalf, HeartFill } from "react-bootstrap-icons";
 import axios from "axios";
 import config from "../config";
 import { withRouter } from "react-router-dom";
@@ -34,7 +34,7 @@ class AddReview extends Component {
             date,
             rating: this.state.ratingCategory,
             restaurantId,
-          })
+          }, {withCredentials: true})
 
           .then((response) => {
             this.setState({
@@ -54,7 +54,7 @@ class AddReview extends Component {
   render() {
     return (
       <div>
-        {this.state.complete ? <h4>Thank you for your review! </h4> : null}
+        {this.state.complete ? <h4>Thank you for your review!<HeartFill color="darkred" height='10px'/></h4> : null}
         <form onSubmit={this.handleSubmit}>
           <label> Title of your review </label>
           <input name="title" type="text" placeholder="Summarize your visit" />
