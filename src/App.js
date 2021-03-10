@@ -186,7 +186,7 @@ class App extends Component {
     const { loggedInUser, error,fetching } = this.state;
 
    if(fetching){
-     return<p>Loading</p>
+     return<p>Loading App.js</p>
    }
 
     return (

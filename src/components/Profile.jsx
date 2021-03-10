@@ -6,7 +6,7 @@ import {StarFill} from "react-bootstrap-icons";
 
 class Profile extends Component {
   state = {
-    users: {},
+    users: [],
   };
   
   componentDidMount() {
