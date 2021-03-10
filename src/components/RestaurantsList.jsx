@@ -44,9 +44,12 @@ class RestaurantsList extends Component {
 
   // search by rating
   handleSearchRate = (event) => {
-    let searchRate = event.target.value.SubSting();
-    let filteredRateList = this.state.businesses.filter((rate) => {
-      return rate.businesses.rating.SubSting().includes(searchRate);
+    let searchRate = event.target.value;
+    let filteredRateList = this.state.businesses.filter((food) => {
+     console.log(searchRate)
+     console.log(food.rating)
+      return food.rating >= searchRate;
+      
     });
     this.setState({
       filteredBusinesses: filteredRateList
@@ -72,7 +75,7 @@ render() {
                       <h4> Cuisine: {singleBusiness.categories[0].title}</h4>
                       <h4>{singleBusiness.terms}</h4>
                       <h5> Rating: {singleBusiness.rating} <StarFill height='10px' color="blue"/> </h5>
-                    <img style = {{width: '300px'}} src = {singleBusiness.image_url} />
+                    <img class="img" src = {singleBusiness.image_url} />
                     <Link to={`/businesses/${singleBusiness.id}`}>
                     <h5> More details</h5>
                     </Link>

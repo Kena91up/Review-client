@@ -6,7 +6,7 @@ class Search extends Component {
     render() {
         return (
             <div>
-                <input onSubmit={this.props.mySubmit} type ="number" placeholder="Search by rating"/>
+                <input onChange={this.props.mySubmit} type ="number" placeholder="Search by rating"/>
             </div>
         )
     }

@@ -22,6 +22,7 @@ class App extends Component {
     filteredProfile: [],
     user: [],
     showForm: false,
+    fetching:true
   };
 
   // All the initial data that display to the user is fetched here
@@ -31,10 +32,14 @@ class App extends Component {
       .then((response) => {
         this.setState({
           user: response.data,
+          fetching:false
         });
       })
       .catch(() => {
         console.log("Detail fecth failed");
+        this.setState({
+          fetching: false,
+        })
       });
     if (!this.state.loggedInUser) {
       axios
@@ -62,7 +67,7 @@ class App extends Component {
       .then((response) => {
         axios
           .patch(
-            `${config.API_URL}/api/update`,
+            `${config.API_URL}/api/user`,
             { country, favorite, profileimage: response.data.image },
             { withCredentials: true }
           )
@@ -80,33 +85,6 @@ class App extends Component {
       .catch((err) => {
         console.log("Update failed", err);
       });
-    // // send image to cloudinary
-    // axios.post(`${config.API_URL}/api/user/upload`, uploadForm)
-    //   .then((response) => {
-    //         //1. Make an API call to the server side Route to update new details
-    //       axios.post(`${config.API_URL}/api/:id`, {
-    //         country: country,
-    //         favirote: favirote,
-    //         profileimage: response.data.profileimage
-    //       })
-    //         .then((response) => {
-    //             // 2. Once the server has successfully created a new todo, update your state that is visible to the user
-    //             this.setState({
-    //               // showForm: false,
-    //               user: [response.data, ...this.state.user]
-    //             }, () => {
-    //               //3. Once the state is update, redirect the user to the home page
-    //               this.props.history.push('/')
-    //             })
-
-    //         })
-    //         .catch((err) => {
-    //           console.log('Create failed', err)
-    //         })
-    //   })
-    //   .catch(() => {
-
-    //   })
   };
 
   handleDelete = (id) => {
@@ -114,8 +92,7 @@ class App extends Component {
     axios
       .delete(`${config.API_URL}/api/user/${id}`)
       .then(() => {
-        // 2. Once the server has successfully created a new todo, update your state that is visible to the user
-        let filteredProfile = this.state.user.filter((user) => {
+          let filteredProfile = this.state.user.filter((user) => {
           return user._id !== id;
         });
 
@@ -205,7 +182,12 @@ class App extends Component {
   };
 
   render() {
-    const { loggedInUser, error } = this.state;
+    const { loggedInUser, error,fetching } = this.state;
+
+   if(fetching){
+     return<p>Loading</p>
+   }
+
     return (
       <div className="App">
         <MyNav onLogout={this.handleLogout} user={loggedInUser} />

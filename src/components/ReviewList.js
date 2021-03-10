@@ -39,7 +39,7 @@ class ReviewList extends Component {
                     <div>
                     <div> {singleReview.title} </div>
                     <div> {singleReview.description} </div>
-                    <img src={singleReview.image} alt={singleReview.title}/>
+                    <img src={singleReview.image} alt={singleReview.title} class="img"/>
                     <div> {singleReview.rating} <StarFill height='10px' color="blue"/> </div>
                     </div>
                 );

@@ -28,16 +28,17 @@ class RestaurantDetails extends Component {
         const {restaurantDetails} = this.state
         let restaurantId = this.props.match.params.restaurantId
         if (!restaurantDetails){
+            <div class="dot-carousel"></div>
             return "Loading..."
         }
         return (
             <div>
              <Link to="/businesses">Back to Restaurants</Link>
             <div> Name of the restaurant: {restaurantDetails.name} </div>
-            <img style = {{width: '350px', height: '450px'}} src= {restaurantDetails.image_url} /> 
+            <img class="img" src= {restaurantDetails.image_url} /> 
             {
                 restaurantDetails.photos.slice(1,3).map((photo) =>{
-                    return <img style = {{width: '350px', height: '450px'}} src= {photo} /> 
+                    return <img class="img" src= {photo} /> 
                 })
             }
             <div> Category: {restaurantDetails.categories[0].title}</div>

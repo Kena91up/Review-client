@@ -26,33 +26,19 @@ class Profile extends Component {
     const { users } = this.state;
     const { onDelete, loggedInUser } = this.props;
 
-    // if (!loggedInUser) {
-    //     return <Redirect to={'/signin'} />
-    // }
+    if (!loggedInUser) {
+        return <Redirect to={'/signin'} />
+    }
     return (
       <div>
         <h4> Welcome to your Profile {loggedInUser.username} !</h4>
           <div>Name:{loggedInUser.username}</div>
           <div>Email:{loggedInUser.email} </div>
-          <img src={loggedInUser.profileimage} alt=''/>
-       {
-           users.map((singleUser) => {
-              return (
-                  <>
-                  <img src={singleUser.profileimage} alt=''/>
-                  <div>Name:{singleUser.username}</div>
-                  <div>Email:{singleUser.email} </div>
-                  <div>Country:{singleUser.country}</div>
-                  <div>Favorite Cuisine {singleUser.favorite}</div>
-                  </>
-              )
-           })
-       }
+          <div>Country:{loggedInUser.country}</div>
+          <div>Favorite Cuisine {loggedInUser.favorite}</div>
+          <img src={loggedInUser.profileimage} alt='' class="img" />
          <Link to={`/user/${loggedInUser._id}`}>Update account </Link> 
-
-
-       
-        <button
+          <button
           onClick={() => {
             onDelete(loggedInUser._id);
           }}

@@ -34,7 +34,7 @@ class AddReview extends Component {
             date,
             rating: this.state.ratingCategory,
             restaurantId,
-          })
+          },{withCredentials:true})
 
           .then((response) => {
             this.setState({
