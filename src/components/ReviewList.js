@@ -38,7 +38,7 @@ class ReviewList extends Component {
                 return (
                     <div>
                     <div> User: {singleReview.userId.username}  </div>
-                    <div> {singleReview.userId.profileimage}  </div>
+                    <img src={singleReview.userId.profileimage} alt="profileImage" />
                     <div> {singleReview.title} </div>
                     <div> {singleReview.description} </div>
                     <div> {singleReview.rating} <StarFill height='10px' color="blue"/> </div>

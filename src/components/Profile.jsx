@@ -37,6 +37,7 @@ class Profile extends Component {
           <div>Email:{loggedInUser.email} </div>
           <div>Country:{loggedInUser.country}</div>
           <div>Favorite Cuisine: {loggedInUser.favorite}</div>
+          <img src={loggedInUser.profileimage} alt=''/>
           <div> Your reviews </div>
           {
             loggedInUser.reviews.map((userReview) => {
@@ -45,12 +46,11 @@ class Profile extends Component {
               <h3>{userReview.title}</h3>
               <h5> {userReview.description}</h5>
               <h5> {userReview.rating} <StarFill height='10px' color="blue"/> </h5>
-              <h5> {userReview.image}</h5>
+              <img src={userReview.image} alt = 'profileImage'/>
               </section>
               </div>
           })
           }
-          <img src={loggedInUser.profileimage} alt=''/>
          <Link to={`/user/${loggedInUser._id}`}>Update account </Link> 
           <button
           onClick={() => {
