@@ -3,10 +3,11 @@ import React, { Component } from "react";
 import config from "../config";
 import { Link , Redirect} from "react-router-dom";
 import {StarFill} from "react-bootstrap-icons";
+import {Spinner} from "react-bootstrap";
 
 class Profile extends Component {
   state = {
-    users: [],
+    loggedInUser: null,
   };
   
   componentDidMount() {
@@ -15,7 +16,7 @@ class Profile extends Component {
       .get(`${config.API_URL}/api/user`, {withCredentials:true})
       .then((response) => {
         this.setState({
-            users: response.data,
+            loggedInUser: response.data,
         });
       })
       .catch(() => {
@@ -23,11 +24,11 @@ class Profile extends Component {
       });
   }
   render() {
-    const { users } = this.state;
-    const { onDelete, loggedInUser } = this.props;
+    const { loggedInUser } = this.state;
+    const { onDelete } = this.props;
 
     if (!loggedInUser) {
-        return <Redirect to={'/signin'} />
+        return <Spinner />
     }
     return (
       <div>

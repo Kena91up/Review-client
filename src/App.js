@@ -220,7 +220,7 @@ class App extends Component {
           <Route
             path="/profile"
             render={(routeProps) => {
-              return <Profile loggedInUser={loggedInUser} {...routeProps} />;
+              return <Profile {...routeProps} />;
             }}
           />
           <Route exact path="/businesses" component={RestaurantsList} />
