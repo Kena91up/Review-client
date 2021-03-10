@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 
 class AddUserDetails extends Component {
-
-    state = {
-        complete: false,
-      };
+  state = {
+    complete: false,
+  };
   render() {
     return (
       <div>
-      {this.state.complete ? <h4>Update your Profile! </h4> : null}
+        {this.state.complete ? <h4>Update your Profile! </h4> : null}
         <div>{this.username}</div>
         <form onSubmit={this.props.onAdd}>
           <input name="country" type="text" placeholder="Enter country" />

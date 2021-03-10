@@ -58,8 +58,10 @@ class RestaurantsList extends Component {
 
  
 render() {
-    const { filteredBusinesses } = this.state;
-   
+    const { filteredBusinesses} = this.state;
+    // if(loaded){
+    //   return<p>Loading</p>
+    // }
     return (
       <div>
       <Link to='/profile'><button>Profile</button></Link>

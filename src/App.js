@@ -22,24 +22,24 @@ class App extends Component {
     filteredProfile: [],
     user: [],
     showForm: false,
-    fetching:true
+    fetching: true,
   };
 
   // All the initial data that display to the user is fetched here
   componentDidMount() {
     axios
-      .get(`${config.API_URL}/api/user` ,{withCredentials:true})
+      .get(`${config.API_URL}/api/user`, { withCredentials: true })
       .then((response) => {
         this.setState({
           user: response.data,
-          fetching:false
+          fetching: false,
         });
       })
       .catch(() => {
         console.log("Detail fecth failed");
         this.setState({
           fetching: false,
-        })
+        });
       });
     if (!this.state.loggedInUser) {
       axios
@@ -85,7 +85,6 @@ class App extends Component {
       .catch((err) => {
         console.log("Update failed", err);
       });
-    
   };
 
   handleDelete = (id) => {
@@ -93,7 +92,7 @@ class App extends Component {
     axios
       .delete(`${config.API_URL}/api/user/${id}`)
       .then(() => {
-          let filteredProfile = this.state.user.filter((user) => {
+        let filteredProfile = this.state.user.filter((user) => {
           return user._id !== id;
         });
 
@@ -183,11 +182,11 @@ class App extends Component {
   };
 
   render() {
-    const { loggedInUser, error,fetching } = this.state;
+    const { loggedInUser, error, fetching } = this.state;
 
-   if(fetching){
-     return<p>Loading</p>
-   }
+    if (fetching) {
+      return <p>Loading</p>;
+    }
 
     return (
       <div className="App">
