@@ -29,7 +29,7 @@ class Map extends Component {
         <MapContainer style = {{width: '800px', height: '500px'}}
         
           center={position}
-          zoom={13}
+          zoom={20}
         >
         <MyComponent position={this.props.location.coordinates}/>
           <TileLayer

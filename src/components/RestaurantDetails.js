@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import config from '../config';
-import {Images, StarFill} from "react-bootstrap-icons";
+import {Images, StarFill, ArrowUpRight} from "react-bootstrap-icons";
 import AddReview from './AddReview';
 import ReviewList from './ReviewList';
 import Map from './Map';
@@ -46,7 +46,7 @@ class RestaurantDetails extends Component {
             <div> Price range: {restaurantDetails.price}</div>
             <div> Rating: {restaurantDetails.rating} <StarFill height="10px" color="blue"/></div>
             <div> Telephone number: {restaurantDetails.phone}</div>
-            <a href ={restaurantDetails.url}> Website </a>
+            <a href ={restaurantDetails.url}> Website<ArrowUpRight height="10px"/></a>
             <Link to={`/businesses/${restaurantId}/add-review`}>
             <div> Write a review </div>
             </Link>

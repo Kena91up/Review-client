@@ -28,7 +28,7 @@ class App extends Component {
   // All the initial data that display to the user is fetched here
   componentDidMount() {
     axios
-      .get(`${config.API_URL}/api/user`)
+      .get(`${config.API_URL}/api/user` ,{withCredentials:true})
       .then((response) => {
         this.setState({
           user: response.data,
@@ -85,6 +85,7 @@ class App extends Component {
       .catch((err) => {
         console.log("Update failed", err);
       });
+    
   };
 
   handleDelete = (id) => {
