@@ -184,9 +184,9 @@ class App extends Component {
   render() {
     const { loggedInUser, error, fetching } = this.state;
 
-    if (fetching) {
-      return <p>Loading</p>;
-    }
+   if(fetching){
+     return<p>Loading App.js</p>
+   }
 
     return (
       <div className="App">
@@ -219,7 +219,7 @@ class App extends Component {
           <Route
             path="/profile"
             render={(routeProps) => {
-              return <Profile loggedInUser={loggedInUser} {...routeProps} />;
+              return <Profile {...routeProps} />;
             }}
           />
           <Route exact path="/businesses" component={RestaurantsList} />

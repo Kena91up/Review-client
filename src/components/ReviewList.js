@@ -37,19 +37,30 @@ class ReviewList extends Component {
         {reviews.map((singleReview) => {
           return (
             <div>
-              <div> User: {singleReview.userId.username} </div>
-              <img src={singleReview.userId.profileimage} alt=" " />
-              <div> {singleReview.title} </div>
-              <div> {singleReview.description} </div>
-              <div>
-                {" "}
-                {singleReview.rating} <StarFill height="10px" color="blue" />{" "}
-              </div>
-              <img
-                src={singleReview.image}
-                alt={singleReview.title}
-                class="img"
-              />
+              <h4> Reviews </h4>
+              {reviews.map((singleReview) => {
+                return (
+                  <div>
+                    <div> User: {singleReview.userId.username} </div>
+                    <img
+                      src={singleReview.userId.profileimage}
+                      alt="profileImage"
+                    />
+                    <div> {singleReview.title} </div>
+                    <div> {singleReview.description} </div>
+                    <div>
+                      {" "}
+                      {singleReview.rating}{" "}
+                      <StarFill height="10px" color="blue" />{" "}
+                    </div>
+                    <img
+                      src={singleReview.image}
+                      alt={singleReview.title}
+                      class="img"
+                    />
+                  </div>
+                );
+              })}
             </div>
           );
         })}

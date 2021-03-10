@@ -5,7 +5,7 @@ import config from "../config";
 import {Rating} from 'react-rating'
 import Search from "./Search.js";
 import SearchRate from './SearchRate.js'
-import {StarFill} from "react-bootstrap-icons";
+import {StarFill, TruckFlatbed} from "react-bootstrap-icons";
 import Chat from './Chat.js'
 import Profile from "./Profile";
 
@@ -58,10 +58,11 @@ class RestaurantsList extends Component {
 
  
 render() {
-    const { filteredBusinesses} = this.state;
-    // if(loaded){
-    //   return<p>Loading</p>
-    // }
+    const { filteredBusinesses, loaded } = this.state;
+
+   if (loaded ==  false){
+    return <p> Loading..</p>
+   }
     return (
       <div>
       <Link to='/profile'><button>Profile</button></Link>
