@@ -2,16 +2,14 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import config from "../config";
-import { Images, StarFill, ArrowUpRight } from "react-bootstrap-icons";
+import { Images, StarFill, ArrowUpRight, } from "react-bootstrap-icons";
 import AddReview from "./AddReview";
 import ReviewList from "./ReviewList";
 import Map from "./Map";
-
 class RestaurantDetails extends Component {
   state = {
     restaurantDetails: null,
   };
-
   componentDidMount() {
     let restaurantId = this.props.match.params.restaurantId;
     axios
@@ -31,12 +29,16 @@ class RestaurantDetails extends Component {
     const { restaurantDetails } = this.state;
     let restaurantId = this.props.match.params.restaurantId;
     if (!restaurantDetails) {
-      <div class="dot-carousel"></div>;
-      return "Loading...";
+     return <div class="spinner-grow text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
     }
     return (
       <div>
-        <Link to="/businesses">Back to Restaurants</Link>
+      <div class="alert alert-primary" role="alert">
+      Back to Restaurants <Link to="/businesses" class="alert-link">click here</Link>
+       </div>
+        
         <div> Name of the restaurant: {restaurantDetails.name} </div>
         <img class="img" src={restaurantDetails.image_url} />
         {restaurantDetails.photos.slice(1, 3).map((photo) => {
@@ -45,7 +47,7 @@ class RestaurantDetails extends Component {
         <div> Category: {restaurantDetails.categories[0].title}</div>
         <div>
           {" "}
-          Location: {restaurantDetails.location.city} |{" "}
+          <img className="iconimage" src="/images/address.png" alt=""/> {restaurantDetails.location.city} |{" "}
           {restaurantDetails.location.address1}
         </div>
         <div> Price range: {restaurantDetails.price}</div>
@@ -54,10 +56,9 @@ class RestaurantDetails extends Component {
           Rating: {restaurantDetails.rating}{" "}
           <StarFill height="10px" color="blue" />
         </div>
-        <div> Telephone number: {restaurantDetails.phone}</div>
+        <div> <img className="iconimage" src="/images/phone.png" att="" /> {restaurantDetails.phone}</div>
         <a href={restaurantDetails.url}>
-          {" "}
-          Website
+          <img className="iconimage" src="/images/website.png" atl=""/>Visit here
           <ArrowUpRight height="10px" />
         </a>
         <Link to={`/businesses/${restaurantId}/add-review`}>
@@ -69,5 +70,4 @@ class RestaurantDetails extends Component {
     );
   }
 }
-
 export default RestaurantDetails;

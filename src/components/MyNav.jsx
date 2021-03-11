@@ -11,6 +11,7 @@ function MyNav(props) {
           {props.user ? (
             <button onClick={props.onLogout}>Log Out</button> //onclick is event onLogout is eventlistner
           ) : (
+            
             <>
               <button>
                 <Link to="/signin" class="button">

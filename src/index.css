@@ -54,6 +54,22 @@ button:hover {
   transition: 0.3s ease background;
 }
  
+/* imageicon */
+.iconimage{
+  height: 20px;
+  width: 20px;
+}
+
+/* foodimage */
+.foogimg{
+  height: 80px;
+  width: 80px;
+}
+.border {
+  height: 600px;
+  width: 20px;
+  display: block;
+}
 /* style the container */
 .container {
   position: relative;

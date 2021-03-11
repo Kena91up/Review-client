@@ -61,7 +61,9 @@ render() {
     const { filteredBusinesses, loaded } = this.state;
 
    if (loaded ==  false){
-    return <p> Loading..</p>
+    return <div class="spinner-grow text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
    }
     return (
       <div>

@@ -32,35 +32,25 @@ class ReviewList extends Component {
     const { loggedInUser, username } = this.props;
 
     return (
-      <div>
+      <div class="media card-deck ">
         <h4> Reviews </h4>
         {reviews.map((singleReview) => {
           return (
-            <div>
-              <h4> Reviews </h4>
-              {reviews.map((singleReview) => {
-                return (
-                  <div>
-                    <div> User: {singleReview.userId.username} </div>
-                    <img
-                      src={singleReview.userId.profileimage}
-                      alt="profileImage"
-                    />
-                    <div> {singleReview.title} </div>
-                    <div> {singleReview.description} </div>
-                    <div>
-                      {" "}
-                      {singleReview.rating}{" "}
-                      <StarFill height="10px" color="blue" />{" "}
-                    </div>
-                    <img
-                      src={singleReview.image}
-                      alt={singleReview.title}
-                      class="img"
-                    />
-                  </div>
-                );
-              })}
+            <div class="media-body border card bg-light mb-3">
+              <img
+                src={singleReview.userId.profileimage}
+                alt="profileImage"
+                class="img rounded-circle"
+              />
+              <h1 class="mt-0">{singleReview.userId.username}</h1>
+              <h3 class="mt-0">{singleReview.title}</h3>
+              <h5 class="mt-0">{singleReview.description}</h5>
+              <h5>{singleReview.rating}<StarFill height="10px" color="green"/> </h5>
+              <img
+                src={singleReview.image}
+                alt={singleReview.title}
+                class="foodimg border-dark rounded"
+              />
             </div>
           );
         })}

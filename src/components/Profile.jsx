@@ -5,7 +5,6 @@ import { Link, Redirect } from "react-router-dom";
 import { StarFill } from "react-bootstrap-icons";
 import { Spinner } from "react-bootstrap";
 
-
 class Profile extends Component {
   state = {
     loggedInUser: null,
@@ -28,8 +27,8 @@ class Profile extends Component {
     const { onDelete } = this.props;
 
     if (!loggedInUser) {
-        return <Spinner />
-    }
+      return <Spinner />
+  }
     return (
       <div>
         <h4> Welcome to your Profile {loggedInUser.username} !</h4>
@@ -37,7 +36,7 @@ class Profile extends Component {
           <div>Email:{loggedInUser.email} </div>
           <div>Country:{loggedInUser.country}</div>
           <div>Favorite Cuisine: {loggedInUser.favorite}</div>
-          <img src={loggedInUser.profileimage} alt=''/>
+          <img src={loggedInUser.profileimage} className="img" alt=''/>
           <div> Your reviews </div>
           {
             loggedInUser.reviews.map((userReview) => {

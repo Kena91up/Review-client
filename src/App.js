@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 import { render } from "react-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios";
 import config from "./config";
 import "./index.css";
@@ -90,15 +91,15 @@ class App extends Component {
   handleDelete = (id) => {
     //1. Make an API call to the server side Route to delete that specific todo
     axios
-      .delete(`${config.API_URL}/api/user/${id}`)
+      .delete(`${config.API_URL}/api/progile/${id}`)
       .then(() => {
-        let filteredProfile = this.state.user.filter((user) => {
-          return user._id !== id;
+        let filteredProfile = this.state.user.filter((loggedInUser) => {
+          return loggedInUser._id !== id;
         });
 
         this.setState(
           {
-            user: filteredProfile,
+            loggedInUser: filteredProfile,
           },
           () => {
             this.props.history.push("/");
@@ -185,7 +186,9 @@ class App extends Component {
     const { loggedInUser, error, fetching } = this.state;
 
    if(fetching){
-     return<p>Loading App.js</p>
+     return <div class="spinner-grow text-primary" role="status">
+     <span class="sr-only">Loading...</span>
+   </div>
    }
 
     return (
@@ -219,7 +222,7 @@ class App extends Component {
           <Route
             path="/profile"
             render={(routeProps) => {
-              return <Profile {...routeProps} />;
+              return <Profile  onDelete={this.handleDelete} {...routeProps} />;
             }}
           />
           <Route exact path="/businesses" component={RestaurantsList} />
@@ -236,7 +239,6 @@ class App extends Component {
               return (
                 <AddUserDetails
                   onAdd={this.handleSubmitProfile}
-                  onDelete={this.handleDelete}
                   {...routeProps}
                 />
               );
