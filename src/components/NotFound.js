@@ -7,8 +7,7 @@ class NotFound extends Component {
         <div
           style={{
             backgroundImage: "url(/images/bench.png)",
-            backgroundPosition: "absolute",
-            width: "100%",
+            backgroundPosition: "top",
             height: "450px",
             backgroundSize: "cover",
             display: "block",
