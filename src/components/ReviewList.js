@@ -44,7 +44,10 @@ class ReviewList extends Component {
               <h1 className="mt-0">{singleReview.userId.username}</h1>
               <h3 className="mt-0 font-italic">{singleReview.title}</h3>
               <h5 className="mt-0 font-italic">{singleReview.description}</h5>
-              <h5 className="font-italic">{singleReview.rating}<StarFill height="10px" color="green"/> </h5>
+              <h5 className="font-italic">
+                {singleReview.rating}
+                <StarFill height="10px" color="green" />
+              </h5>
               <img
                 src={singleReview.image}
                 alt={singleReview.title}

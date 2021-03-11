@@ -27,14 +27,18 @@ class AddReview extends Component {
       .post(`${config.API_URL}/api/upload`, uploadFormImage)
       .then((response) => {
         axios
-          .post(`${config.API_URL}/api/add-review`, {
-            image: response.data.image,
-            title,
-            description,
-            date,
-            rating: this.state.ratingCategory,
-            restaurantId,
-          },{withCredentials:true})
+          .post(
+            `${config.API_URL}/api/add-review`,
+            {
+              image: response.data.image,
+              title,
+              description,
+              date,
+              rating: this.state.ratingCategory,
+              restaurantId,
+            },
+            { withCredentials: true }
+          )
 
           .then((response) => {
             this.setState({
@@ -54,7 +58,12 @@ class AddReview extends Component {
   render() {
     return (
       <div>
-        {this.state.complete ? <h4 className="font-weight-bold">Thank you for your review!<HeartFill color="darkred" height='10px'/></h4> : null}
+        {this.state.complete ? (
+          <h4 className="font-weight-bold">
+            Thank you for your review!
+            <HeartFill color="darkred" height="10px" />
+          </h4>
+        ) : null}
         <form onSubmit={this.handleSubmit}>
           <label> Title of your review </label>
           <input name="title" type="text" placeholder="Summarize your visit" />

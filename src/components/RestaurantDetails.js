@@ -39,7 +39,7 @@ class RestaurantDetails extends Component {
     return (
       <div>
         <div className="alert alert-primary font-italic" role="alert">
-          Back to Restaurants  
+          Back to Restaurants
           <Link to="/businesses" className="alert-link">
             click here
           </Link>
@@ -63,36 +63,46 @@ class RestaurantDetails extends Component {
               </div>
             </section>
             <section className="slider-right">
-              <div className="slide-top">Category: {restaurantDetails.categories[0].title}</div>
-              <div className="slider-topic" >Price: {restaurantDetails.price} </div>
-              <div  className="slider-topic">
+              <div className="slide-top">
+                Category: {restaurantDetails.categories[0].title}
+              </div>
+              <div className="slider-topic">
+                Price: {restaurantDetails.price}{" "}
+              </div>
+              <div className="slider-topic">
                 Rating: {restaurantDetails.rating}
                 <StarFill height="10px" color="blue" />
               </div>
-              <div  className="slider-topic">
+              <div className="slider-topic">
                 <img className="iconimage" src="/images/address.png" alt="" />
                 {restaurantDetails.location.city} |
                 {restaurantDetails.location.address1}
               </div>
-              <div  className="slider-topic">
+              <div className="slider-topic">
                 <img className="iconimage" src="/images/phone.png" att="" />
                 {restaurantDetails.phone}
               </div>
-              <div  className="slider-topic"> <a href={restaurantDetails.url}>
-                <img className="iconimage" src="/images/website.png" atl="" />
-                Visit here
-                <ArrowUpRight height="10px" />
-              </a>
+              <div className="slider-topic">
+                {" "}
+                <a href={restaurantDetails.url}>
+                  <img className="iconimage" src="/images/website.png" atl="" />
+                  Visit here
+                  <ArrowUpRight height="10px" />
+                </a>
               </div>
-              <div className="slider-topic"> 
-                    <Link to={`/businesses/${restaurantId}/add-review`}>Write a review </Link>
+              <div className="slider-topic">
+                <Link to={`/businesses/${restaurantId}/add-review`}>
+                  Write a review{" "}
+                </Link>
               </div>
             </section>
           </div>
           <div className="map">
-          <Map location={restaurantDetails} /></div>
+            <Map location={restaurantDetails} />
+          </div>
           <div className="review">
-          <ReviewList restaurantId={restaurantId}/></div>
+            <ReviewList restaurantId={restaurantId} />
+          </div>
         </div>
       </div>
     );
