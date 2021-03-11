@@ -2,8 +2,7 @@ import axios from "axios";
 import React, { Component } from "react";
 import config from "../config";
 import { Link, Redirect } from "react-router-dom";
-import { StarFill } from "react-bootstrap-icons";
-import { Spinner } from "react-bootstrap";
+import { StarFill } from "react-bootstrap-icons"
 
 class Profile extends Component {
   state = {
@@ -27,8 +26,10 @@ class Profile extends Component {
     const { onDelete } = this.props;
 
     if (!loggedInUser) {
-      return <Spinner />
-  }
+      return <div class="spinner-grow text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    }
     return (
       <div>
         <h4> Welcome to your Profile {loggedInUser.username} !</h4>
@@ -45,7 +46,7 @@ class Profile extends Component {
               <h3>{userReview.title}</h3>
               <h5> {userReview.description}</h5>
               <h5> {userReview.rating} <StarFill height='10px' color="blue"/> </h5>
-              <img src={userReview.image} alt = 'profileImage'/>
+              <img src={userReview.image} alt = 'profileImage' className="img" />
               </section>
               </div>
           })
