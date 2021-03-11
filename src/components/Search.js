@@ -8,7 +8,7 @@ class Search extends Component {
         <input
           onChange={this.props.myChange}
           type="text"
-          placeholder="Search food"
+          placeholder="Search cuisine"
         />
       </div>
     );

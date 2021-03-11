@@ -279,3 +279,61 @@ p {
   }
 }
 
+.slider-wrap{
+  display: flex;
+  justify-content: center;
+}
+
+.slider-right {
+  margin-left: 6%;
+}
+.slider-topic{
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+.slide-top {
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+.auto-slider{
+  margin: 0;
+}
+.map{
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
+}
+.review{
+  margin-top: 20px;
+}
+.mt-0{
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.media{
+  margin-top: 40px;
+}
+.fimg{
+ height: 250px;
+ width: 250px;
+}
+.card-wrap{
+  display: flex;
+  justify-content:space-around;
+  
+}
+.card-deck1{
+  width: 30%;
+  height: auto;
+  margin: 0 4%;
+}
+.media1{
+  margin: 0 4%;
+}
+.media-body1{
+  margin-reight: 10%;
+}
+.list{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-bottom: 20px;
+}

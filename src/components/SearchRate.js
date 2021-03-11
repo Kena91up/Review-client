@@ -8,7 +8,7 @@ class Search extends Component {
         <input
           onChange={this.props.mySubmit}
           type="number"
-          placeholder="Search by rating"
+          placeholder="Search by Rating"
         />
       </div>
     );

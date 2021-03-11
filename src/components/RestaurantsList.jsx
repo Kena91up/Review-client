@@ -68,22 +68,27 @@ render() {
     return (
       <div>
       <Link to='/profile'><button>Profile</button></Link>
-        <h4>Restaurants</h4>
+        <h4 className="font-weight-bold">Restaurants in the best destinations</h4>
         <Search myChange={this.handleSearchFood} />
         <SearchRate mySubmit={this.handleSearchRate}/>
         {
           filteredBusinesses.map((singleBusiness) => {
           return (
               <div key = {singleBusiness.id}>
-                      <h3>Name: {singleBusiness.name} </h3>
-                      <h4>Location: {singleBusiness.location.city}, {singleBusiness.location.address1}</h4>
-                      <h4> Cuisine: {singleBusiness.categories[0].title}</h4>
-                      <h4>{singleBusiness.terms}</h4>
-                      <h5> Rating: {singleBusiness.rating} <StarFill height='10px' color="blue"/> </h5>
-                    <img class="img" src = {singleBusiness.image_url} />
+              <div className="media list">
+              <img className="img mr-3" src = {singleBusiness.image_url} />
+              <div>
+              <div className="mt-0">Name: {singleBusiness.name} </div>
+              <div className="mt-0">Location: {singleBusiness.location.city}, {singleBusiness.location.address1}</div>
+              <div className="mt-0"> Cuisine: {singleBusiness.categories[0].title}</div>
+              <div className="mt-0">{singleBusiness.terms}</div>
+              <div className="mt-0">Rating: {singleBusiness.rating} <StarFill height='10px' color="blue"/> </div>
+                    
                     <Link to={`/businesses/${singleBusiness.id}`}>
-                    <h5> More details</h5>
+                    <div className="mt-0"> More details</div>
                     </Link>
+                    </div>
+                    </div>
                 </div>
           );
         })}

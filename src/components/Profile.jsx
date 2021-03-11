@@ -32,25 +32,31 @@ class Profile extends Component {
     }
     return (
       <div>
-        <h4> Welcome to your Profile {loggedInUser.username} !</h4>
-          <div>Name:{loggedInUser.username}</div>
-          <div>Email:{loggedInUser.email} </div>
-          <div>Country:{loggedInUser.country}</div>
-          <div>Favorite Cuisine: {loggedInUser.favorite}</div>
-          <img src={loggedInUser.profileimage} className="img" alt=''/>
-          <div> Your reviews </div>
+      <h1 className="font-weight-bold"> Welcome to your Profile {loggedInUser.username} !</h1>
+        <div className="media media1">
+      <img  src={loggedInUser.profileimage} className="img mr-3" alt=''/>
+        <div >
+          <div className="mt-0">Name:{loggedInUser.username}</div>
+          <div className="mt-0">Email:{loggedInUser.email} </div>
+          <div className="mt-0">Country:{loggedInUser.country}</div>
+          <div className="mt-0">Favorite Cuisine: {loggedInUser.favorite}</div>
+          </div>
+          </div>
+          <h2 className="font-weight-bold"> Your reviews </h2>
+          <div className="card-wrap">
           {
             loggedInUser.reviews.map((userReview) => {
-              return <div> <section>
-              <h3> {userReview.restaurantName} at {userReview.restaurantLocation}</h3>
-              <h3>{userReview.title}</h3>
-              <h5> {userReview.description}</h5>
-              <h5> {userReview.rating} <StarFill height='10px' color="blue"/> </h5>
-              <img src={userReview.image} alt = 'profileImage' className="img" />
-              </section>
+              return <div className="media card-deck card-deck1"> <div className="media-body media-body1 border card bg-light mb-3">
+              <h3 className="mt-0"> {userReview.restaurantName} at {userReview.restaurantLocation}</h3>
+              <h3 className="mt-0 font-italic">{userReview.title}</h3>
+              <h5 className="mt-0 font-italic"> {userReview.description}</h5>
+              <h5 className="mt-0 font-italic"> {userReview.rating} <StarFill height='10px' color="green"/> </h5>
+              <img src={userReview.image} alt = 'profileImage' className=" fimg border-dark rounded" />
               </div>
-          })
+              </div>
+              })
           }
+          </div>
          <Link to={`/user/${loggedInUser._id}`}>Update account </Link> 
           <button
           onClick={() => {
