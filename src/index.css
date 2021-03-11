@@ -22,10 +22,6 @@ body {
   box-sizing: border-box;
 }
 
-.logo {
-  height: 200px;
-  width: 200px;
-}
 .img{
   height: 200px;
   width: 200px;
@@ -145,6 +141,30 @@ p {
   background-color: #666;
   border-radius: 0px 0px 4px 4px;
 }
+
+.text-muted {
+  text-align: center;
+  margin: 2% 0 10px 10px;
+}
+
+.splash-photo {
+  width: 50%;
+}
+
+.splash-screen {
+  height: 450px
+}
+
+.logo {
+  width: 13%;
+  height: auto;
+}
+
+.button {
+  border-style: none;
+  background-color: transparent;
+}
+
  
 /* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 650px) {

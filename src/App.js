@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 import { render } from "react-dom";
+import { Card } from "react-bootstrap";
 import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
 import config from "./config";
 import "./index.css";
 import MyNav from "./components/MyNav.jsx";
@@ -12,6 +14,8 @@ import AddReview from "./components/AddReview";
 import Profile from "./components/Profile";
 import AddUserDetails from "./components/AddUserDetails";
 import RestaurantDetails from "./components/RestaurantDetails";
+import SplashComponent from "./components/Splash";
+
 
 class App extends Component {
   state = {
@@ -92,13 +96,13 @@ class App extends Component {
     axios
       .delete(`${config.API_URL}/api/user/${id}`)
       .then(() => {
-        let filteredProfile = this.state.user.filter((user) => {
-          return user._id !== id;
+        let filteredProfile = this.state.user.filter((loggedInUser) => {
+          return loggedInUser._id !== id;
         });
 
         this.setState(
           {
-            user: filteredProfile,
+            loggedInUser: filteredProfile,
           },
           () => {
             this.props.history.push("/");
@@ -184,14 +188,15 @@ class App extends Component {
   render() {
     const { loggedInUser, error, fetching } = this.state;
 
-   if(fetching){
-     return<p>Loading App.js</p>
-   }
+    if (fetching) {
+      return <p>Loading App.js</p>;
+    }
 
     return (
       <div className="App">
         <MyNav onLogout={this.handleLogout} user={loggedInUser} />
         <Switch>
+          <Route exact path="/" component={SplashComponent} />
           <Route
             path="/signin"
             render={(routeProps) => {
@@ -219,7 +224,7 @@ class App extends Component {
           <Route
             path="/profile"
             render={(routeProps) => {
-              return <Profile {...routeProps} />;
+              return <Profile onDelete={this.handleDelete} {...routeProps} />;
             }}
           />
           <Route exact path="/businesses" component={RestaurantsList} />
@@ -236,7 +241,6 @@ class App extends Component {
               return (
                 <AddUserDetails
                   onAdd={this.handleSubmitProfile}
-                  onDelete={this.handleDelete}
                   {...routeProps}
                 />
               );
@@ -248,6 +252,9 @@ class App extends Component {
             component={RestaurantDetails}
           />
         </Switch>
+        <Card.Footer className="text-muted">
+          Copyright &copy; 2021 By Kena & Viktoria{" "}
+        </Card.Footer>
       </div>
     );
   }
