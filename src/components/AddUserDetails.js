@@ -7,7 +7,7 @@ class AddUserDetails extends Component {
   render() {
     return (
       <div>
-        {this.state.complete ? <h4>Update your Profile! </h4> : null}
+        {this.state.complete ? <h4>Update your Profile </h4> : null}
         <div>{this.username}</div>
         <form onSubmit={this.props.onAdd}>
           <input name="country" type="text" placeholder="Enter country" />
@@ -17,7 +17,7 @@ class AddUserDetails extends Component {
             placeholder="Your favorite cuisine"
           />
           <input name="profileimage" type="file" />
-          <button type="submit">Add Profile</button>
+          <button type="submit">Update Profile</button>
         </form>
       </div>
     );

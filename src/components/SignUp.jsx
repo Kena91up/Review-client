@@ -24,9 +24,9 @@ function SignUp(props) {
         </button>
 
         <p>
-          Already have an account!
+          Already have an account?
           <Link style={{ marginLeft: "10px" }} to="/signin">
-            LogIn
+            Log In
           </Link>
         </p>
       </form>

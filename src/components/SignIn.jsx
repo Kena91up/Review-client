@@ -21,9 +21,9 @@ function SignIn(props) {
           </div>
         </div>
         <p>
-          Don't have an account!
+          Don't have an account?
           <Link style={{ marginLeft: "10px" }} to="/signup">
-            SignUp
+            Sign Up
           </Link>
         </p>
       </form>

@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 import { render } from "react-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Card } from "react-bootstrap";
 import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
 import config from "./config";
 import "./index.css";
 import MyNav from "./components/MyNav.jsx";
@@ -13,6 +15,9 @@ import AddReview from "./components/AddReview";
 import Profile from "./components/Profile";
 import AddUserDetails from "./components/AddUserDetails";
 import RestaurantDetails from "./components/RestaurantDetails";
+import SplashComponent from "./components/Splash";
+import NotFound from './components/NotFound';
+
 
 class App extends Component {
   state = {
@@ -91,7 +96,7 @@ class App extends Component {
   handleDelete = (id) => {
     //1. Make an API call to the server side Route to delete that specific todo
     axios
-      .delete(`${config.API_URL}/api/progile/${id}`)
+      .delete(`${config.API_URL}/api/profile/${id}`) 
       .then(() => {
         let filteredProfile = this.state.user.filter((loggedInUser) => {
           return loggedInUser._id !== id;
@@ -195,6 +200,7 @@ class App extends Component {
       <div className="App">
         <MyNav onLogout={this.handleLogout} user={loggedInUser} />
         <Switch>
+          <Route exact path="/" component={SplashComponent} />
           <Route
             path="/signin"
             render={(routeProps) => {
@@ -249,7 +255,11 @@ class App extends Component {
             path="/businesses/:restaurantId"
             component={RestaurantDetails}
           />
+          <Route component={NotFound} />
         </Switch>
+        <Card.Footer className="text-muted">
+          Copyright &copy; 2021 By Kena & Viktoria{" "}
+        </Card.Footer>
       </div>
     );
   }
