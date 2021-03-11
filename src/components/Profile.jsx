@@ -57,7 +57,7 @@ class Profile extends Component {
             onDelete(loggedInUser._id);
           }}
         >
-          Delete
+          Delete account
         </button>
       </div>
     );

@@ -15,6 +15,7 @@ import Profile from "./components/Profile";
 import AddUserDetails from "./components/AddUserDetails";
 import RestaurantDetails from "./components/RestaurantDetails";
 import SplashComponent from "./components/Splash";
+import NotFound from './components/NotFound';
 
 
 class App extends Component {
@@ -94,7 +95,7 @@ class App extends Component {
   handleDelete = (id) => {
     //1. Make an API call to the server side Route to delete that specific todo
     axios
-      .delete(`${config.API_URL}/api/user/${id}`)
+      .delete(`${config.API_URL}/api/profile/${id}`) 
       .then(() => {
         let filteredProfile = this.state.user.filter((loggedInUser) => {
           return loggedInUser._id !== id;
@@ -251,6 +252,7 @@ class App extends Component {
             path="/businesses/:restaurantId"
             component={RestaurantDetails}
           />
+          <Route component={NotFound} />
         </Switch>
         <Card.Footer className="text-muted">
           Copyright &copy; 2021 By Kena & Viktoria{" "}
