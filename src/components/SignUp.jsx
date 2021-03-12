@@ -19,7 +19,7 @@ function SignUp(props) {
         {props.error ? (
           <p style={{ color: "green" }}>{props.error.errorMessage}</p>
         ) : null}
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-custom">
           Create an account
         </button>
 

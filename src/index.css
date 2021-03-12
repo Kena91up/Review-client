@@ -42,6 +42,10 @@ button {
   float: top;
 }
 
+.btn-custom{
+  background-color: #009fab !important;
+}
+
 button:hover {
   background: grey;
   color:white;
@@ -226,7 +230,7 @@ p {
 }
 
 .logo {
-  width: 13%;
+  width:100px;
   height: auto;
 }
 

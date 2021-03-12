@@ -67,9 +67,6 @@ class RestaurantsList extends Component {
     }
     return (
       <div>
-        <Link to="/profile">
-          <button>Profile</button>
-        </Link>
         <h4 className="font-weight-bold">
           Restaurants in the best destinations
         </h4>
