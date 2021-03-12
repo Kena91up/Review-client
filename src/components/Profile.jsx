@@ -51,7 +51,7 @@ class Profile extends Component {
               </div>
           })
           }
-         <Link to={`/user/${loggedInUser._id}`}>Update account </Link> 
+         <Link to={`/user/${loggedInUser._id}`}>Update account </Link>        
           <button
           onClick={() => {
             onDelete(loggedInUser._id);

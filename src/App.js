@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 import { render } from "react-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card } from "react-bootstrap";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -47,6 +46,7 @@ class App extends Component {
           fetching: false,
         });
       });
+
     if (!this.state.loggedInUser) {
       axios
         .get(`${config.API_URL}/api/user`, { withCredentials: true })

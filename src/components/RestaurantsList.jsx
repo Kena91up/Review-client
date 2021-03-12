@@ -67,7 +67,6 @@ render() {
    }
     return (
       <div>
-      <Link to='/profile'><button>Profile</button></Link>
         <h4>Restaurants</h4>
         <Search myChange={this.handleSearchFood} />
         <SearchRate mySubmit={this.handleSearchRate}/>
